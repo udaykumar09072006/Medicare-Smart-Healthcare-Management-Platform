@@ -5,11 +5,13 @@
 .env.production
 .env.development
 
-# Dependencies (generated, not needed in repo)
-node_modules/
+# Lock files (npm generates these, not needed in repo)
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# Dependencies (generated, not needed in repo)
+node_modules/
 
 # Build outputs
 dist/
@@ -36,6 +38,6 @@ yarn-error.log*
 # OS
 Thumbs.db
 
-# Uploads (keep structure, not files)
+# Uploads
 backend/public/uploads/*
 !backend/public/uploads/.gitkeep
