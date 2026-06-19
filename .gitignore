@@ -1,0 +1,41 @@
+# Environment Variables - NEVER COMMIT
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Dependencies (generated, not needed in repo)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+Thumbs.db
+
+# Uploads (keep structure, not files)
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
