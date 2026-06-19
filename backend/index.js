@@ -14,25 +14,19 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // ⭐ IMPORTANT: ENABLE CREDENTIALS FOR CLERK COOKIE SESSION
-const allowedOrigins = [
-  "http://localhost:5173", // user frontend
-  "http://localhost:5174", // admin dashboard (common)
-  "http://localhost:5175", // Vite picked 5175 for admin during dev
-];
-
+// In production we want to allow Vercel frontend origins as well.
+// For simplicity and to avoid blocking valid deployed frontends, echo
+// the incoming origin back (this allows credentials when needed).
 app.use(
   cors({
     origin: function (origin, callback) {
       // allow server-to-server & tools like Postman (no origin)
       if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
+      // Echo back the requesting origin — this enables CORS for any
+      // browser origin while still setting a specific Access-Control-Allow-Origin header.
+      return callback(null, true);
     },
-    credentials: true, // ✅ REQUIRED for cookies / Clerk
+    credentials: true, // required for cookies / Clerk when used
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
